@@ -1,0 +1,79 @@
+<GameScreen>:
+    name: "game"
+
+    MDFloatLayout:
+        id: root_layout
+
+        Image:
+            id: bg
+            source: root.bg_source
+            allow_stretch: True
+            keep_ratio: False
+
+        BoxLayout:
+            id: dialog_box
+            orientation: "horizontal"
+            size_hint_y: 0.6
+            padding: "16dp"
+            spacing: "8dp"
+            pos_hint: {"x": 0, "y": 0}
+
+
+            BoxLayout:
+                id: dialog_text
+                orientation: "vertical"
+                size_hint_x: 0.3
+
+                Image:
+                    id: lspeaker
+                    source: root.lspeaker_source
+                    allow_stretch: True
+                    keep_ratio: True
+
+                MDLabel:
+                    id: speaker
+                    bold: True
+                    size_hint_y: 0.1
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    halign: "center"
+
+            MDLabel:
+                id: dialogue
+                size_hint_y: 0.4
+                pos_hint: {"x": 0.3, "y": 0}
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                text_size: self.width, None
+                valign: "top"
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0.6
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]
+
+        ClickLayer:
+            id: click_layer
+            on_release: root.on_click()
+
+        MDBoxLayout:
+            id: save_box
+            orientation: 'horizontal'
+            size_hint_x: None
+            width: "160dp"
+            size_hint_y: None
+            pos_hint: {'right': 1, 'top': 1}
+
+            MDFabButton:
+                id: save_button
+                icon: "content-save"
+
+            MDFabButton:
+                id: restore_button
+                icon: "restore"
+
+            MDFabButton:
+                id: reload_button
+                icon: "reload"
